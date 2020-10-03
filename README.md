@@ -268,11 +268,12 @@ ecs-cli up --vpc-0af0261826f92a984 --keypair jholderguru --capability-iam --size
 ```
 #### When we open our Cloudformation and go to even events we should similar to the above.
 
-#### Next we run the cmd below to bring up the Cluster.
-
+#### Next we run the cmd below to bring up the Cluster
 ```
  ecs-cli compose up --create-log-groups --cluster-config jholderguru-ecscluster
+
 ```
+
 #### expected output
 
 ```
@@ -287,6 +288,21 @@ ecs-cli up --vpc-0af0261826f92a984 --keypair jholderguru --capability-iam --size
 [36mINFO[0m[0037] Started container...                          [36mcontainer[0m=784aa82a-b92c-4854-971e-fb37967e1abd/wordpress [36mdesiredStatus[0m=RUNNING [36mlastStatus[0m=RUNNING [36mtaskDefinition[0m="wordpress:1"
 [36mINFO[0m[0037] Started container...                          [36mcontainer[0m=784aa82a-b92c-4854-971e-fb37967e1abd/mysql [36mdesiredStatus[0m=RUNNING [36mlastStatus[0m=RUNNING [36mtaskDefinition[0m="wordpress:1"
 ```
+#### aws ecs run-task --cluster jholderguru-ecscluster --task-definition wordpress:4 --count 1
+
+```
+
+aws ecs stop-task --cluster jholderguru-ecscluster --task 1fe8c09c-e47b-403f-a0f3-454fc9ad1780 (this number is from the task definition)
+```
+
 #### On our CLoudFormation we should see the ECS cluster and and and running, when we take the public IP address and paste it in our browser we should see 'Thank you for installing webpress' and be taken to a word press interface.
 
-### We have successfully created wordpress and my sql containers.
+
+#### We have successfully created wordpress and my sql containers.
+
+#### To stop the Tasks and bring down the cluster
+```
+aws ecs stop-task --cluster jholderguru-ecscluster --task 1fe8c09c-e47b-403f-a0f3-454fc9ad1780
+
+ ecs-cli down --force --cluster-config jholderguru-ecscluster
+```

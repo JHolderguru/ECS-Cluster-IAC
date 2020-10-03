@@ -248,4 +248,26 @@ ecs-cli configure --cluster jholderguru-ecscluster --region eu-west-1a --default
  ecs-cli configure profile --access-key AKIAYXXXXXXXxxxxxxXxxxx2 --secret-key XXXXXXXXXXxxxxxXXXXXxxxxxx --profile-name jholderguru-ecscluster
 ```
 #### expected output
-#### Saved ECS CLI profile configuration jholderguru-ecscluster.
+```
+ Saved ECS CLI profile configuration jholderguru-ecscluster.
+ ```
+### then initialize the EC2 Clusters
+
+```
+ecs-cli up --vpc-0af0261826f92a984 --keypair jholderguru --capability-iam --size 2 --instance-type t2.micro --cluster-config jholderguru-ecscluster --subnets subnet-0a682399cf8d9d303,subnet-0a682399cf8d9d303
+```
+
+#### expected output
+```
+[36mINFO[0m[0000] Using recommended Amazon Linux 2 AMI with ECS Agent 1.45.0 and Docker version 19.03.6-ce
+[36mINFO[0m[0000] Created cluster                               [36mcluster[0m=jholderguru-ecscluster [36mregion[0m=eu-west-1
+[36mINFO[0m[0001] Waiting for your cluster resources to be created...
+[36mINFO[0m[0001] Cloudformation stack status                   [36mstackStatus[0m=CREATE_IN_PROGRESS
+[36mINFO[0m[0061] Cloudformation stack status                   [36mstackStatus[0m=CREATE_IN_PROGRESS
+[36mINFO[0m[0122] Cloudformation stack status                   [36mstackStatus[0m=CREATE_IN_PROGRESS
+```
+#### When we open our Cloudformation and go to even events we should similar to the above.
+
+```
+ ecs-cli compose up --create-log-groups --cluster-config jholderguru-ecscluster
+```

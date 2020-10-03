@@ -271,3 +271,17 @@ ecs-cli up --vpc-0af0261826f92a984 --keypair jholderguru --capability-iam --size
 ```
  ecs-cli compose up --create-log-groups --cluster-config jholderguru-ecscluster
 ```
+#### expected output
+
+```
+[36mINFO[0m[0000] Using recommended Amazon Linux 2 AMI with ECS Agent 1.45.0 and Docker version 19.03.6-ce
+[36mINFO[0m[0000] Created cluster                               [36mcluster[0m=jholderguru-ecscluster [36mregion[0m=eu-west-1
+[36mINFO[0m[0000] Waiting for your CloudFormation stack resources to be deleted...
+[36mINFO[0m[0001] Cloudformation stack status                   [36mstackStatus[0m=DELETE_IN_PROGRESS
+[36mINFO[0m[0031] Waiting for your cluster resources to be created...
+[36mINFO[0m[0031] Cloudformation stack status                   [36mstackStatus[0m=CREATE_IN_PROGRESS
+[36mINFO[0m[0092] Cloudformation stack status                   [36mstackStatus[0m=CREATE_IN_PROGRESS
+[36mINFO[0m[0152] Cloudformation stack status                   [36mstackStatus[0m=CREATE_IN_PROGRESS
+Security Group created: sg-0e7383ac12967a0ff
+Cluster creation succeeded.
+```

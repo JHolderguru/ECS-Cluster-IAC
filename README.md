@@ -287,3 +287,6 @@ ecs-cli up --vpc-0af0261826f92a984 --keypair jholderguru --capability-iam --size
 [36mINFO[0m[0037] Started container...                          [36mcontainer[0m=784aa82a-b92c-4854-971e-fb37967e1abd/wordpress [36mdesiredStatus[0m=RUNNING [36mlastStatus[0m=RUNNING [36mtaskDefinition[0m="wordpress:1"
 [36mINFO[0m[0037] Started container...                          [36mcontainer[0m=784aa82a-b92c-4854-971e-fb37967e1abd/mysql [36mdesiredStatus[0m=RUNNING [36mlastStatus[0m=RUNNING [36mtaskDefinition[0m="wordpress:1"
 ```
+#### On our CLoudFormation we should see the ECS cluster and and and running, when we take the public IP address and paste it in our browser we should see 'Thank you for installing webpress' and be taken to a word press interface.
+
+### We have successfully created wordpress and my sql containers.

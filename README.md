@@ -148,5 +148,37 @@ qX2yy/UX5nSPU492e2CdZ1UhoU0SRFY3bxKHKB7SDbVeav+K5g==
 ```
 
 #### The details of the Amazon ECS PGP public key for reference:
+```
+Key ID: BCE9D9A42D51784F
+Type: RSA
+Size: 4096/4096
+Expires: Never
+User ID: Amazon ECS
+Key fingerprint: F34C 3DDA E729 26B0 79BE AEC6 BCE9 D9A4 2D51 784F
+```
+#### Import the Amazon ECS PGP public key with the following command.
+```
+gpg --import <public_key_filename>
+```
 
-#### 3.
+#### 3. Download the Amazon ECS CLI signatures. The signatures are ASCII detached PGP signatures stored in files with the extension .asc. The signatures file has the same name as its corresponding executable, with .asc appended.
+
+```
+Invoke-WebRequest -OutFile ecs-cli.asc https://amazon-ecs-cli.s3.amazonaws.com/ecs-cli-windows-amd64-latest.exe.asc
+```
+
+#### 4. Verify Signature
+```
+PS C:\> gpg --verify ecs-cli.asc 'C:\Program Files\Amazon\ECSCLI\ecs-cli.exe'
+
+```
+#### Expected output
+```
+gpg: Signature made Tue Apr  3 13:29:30 2018 PDT
+gpg:                using RSA key DE3CBD61ADAF8B8E
+gpg: Good signature from "Amazon ECS <ecs-security@amazon.com>" [unknown]
+gpg: WARNING: This key is not certified with a trusted signature!
+gpg:          There is no indication that the signature belongs to the owner.
+Primary key fingerprint: F34C 3DDA E729 26B0 79BE  AEC6 BCE9 D9A4 2D51 784F
+     Subkey fingerprint: EB3D F841 E2C9 212A 2BD4  2232 DE3C BD61 ADAF 8B8E
+```

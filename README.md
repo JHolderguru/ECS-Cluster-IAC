@@ -268,20 +268,22 @@ ecs-cli up --vpc-0af0261826f92a984 --keypair jholderguru --capability-iam --size
 ```
 #### When we open our Cloudformation and go to even events we should similar to the above.
 
+#### Next we run the cmd below to bring up the Cluster.
+
 ```
  ecs-cli compose up --create-log-groups --cluster-config jholderguru-ecscluster
 ```
 #### expected output
 
 ```
-[36mINFO[0m[0000] Using recommended Amazon Linux 2 AMI with ECS Agent 1.45.0 and Docker version 19.03.6-ce
-[36mINFO[0m[0000] Created cluster                               [36mcluster[0m=jholderguru-ecscluster [36mregion[0m=eu-west-1
-[36mINFO[0m[0000] Waiting for your CloudFormation stack resources to be deleted...
-[36mINFO[0m[0001] Cloudformation stack status                   [36mstackStatus[0m=DELETE_IN_PROGRESS
-[36mINFO[0m[0031] Waiting for your cluster resources to be created...
-[36mINFO[0m[0031] Cloudformation stack status                   [36mstackStatus[0m=CREATE_IN_PROGRESS
-[36mINFO[0m[0092] Cloudformation stack status                   [36mstackStatus[0m=CREATE_IN_PROGRESS
-[36mINFO[0m[0152] Cloudformation stack status                   [36mstackStatus[0m=CREATE_IN_PROGRESS
-Security Group created: sg-0e7383ac12967a0ff
-Cluster creation succeeded.
+[36mINFO[0m[0000] Starting container...                         [36mcontainer[0m=784aa82a-b92c-4854-971e-fb37967e1abd/mysql
+[36mINFO[0m[0000] Starting container...                         [36mcontainer[0m=784aa82a-b92c-4854-971e-fb37967e1abd/wordpress
+[36mINFO[0m[0000] Describe ECS container status                 [36mcontainer[0m=784aa82a-b92c-4854-971e-fb37967e1abd/wordpress [36mdesiredStatus[0m=RUNNING [36mlastStatus[0m=PENDING [36mtaskDefinition[0m="wordpress:1"
+[36mINFO[0m[0000] Describe ECS container status                 [36mcontainer[0m=784aa82a-b92c-4854-971e-fb37967e1abd/mysql [36mdesiredStatus[0m=RUNNING [36mlastStatus[0m=PENDING [36mtaskDefinition[0m="wordpress:1"
+[36mINFO[0m[0012] Describe ECS container status                 [36mcontainer[0m=784aa82a-b92c-4854-971e-fb37967e1abd/wordpress [36mdesiredStatus[0m=RUNNING [36mlastStatus[0m=PENDING [36mtaskDefinition[0m="wordpress:1"
+[36mINFO[0m[0012] Describe ECS container status                 [36mcontainer[0m=784aa82a-b92c-4854-971e-fb37967e1abd/mysql [36mdesiredStatus[0m=RUNNING [36mlastStatus[0m=PENDING [36mtaskDefinition[0m="wordpress:1"
+[36mINFO[0m[0025] Describe ECS container status                 [36mcontainer[0m=784aa82a-b92c-4854-971e-fb37967e1abd/wordpress [36mdesiredStatus[0m=RUNNING [36mlastStatus[0m=PENDING [36mtaskDefinition[0m="wordpress:1"
+[36mINFO[0m[0025] Describe ECS container status                 [36mcontainer[0m=784aa82a-b92c-4854-971e-fb37967e1abd/mysql [36mdesiredStatus[0m=RUNNING [36mlastStatus[0m=PENDING [36mtaskDefinition[0m="wordpress:1"
+[36mINFO[0m[0037] Started container...                          [36mcontainer[0m=784aa82a-b92c-4854-971e-fb37967e1abd/wordpress [36mdesiredStatus[0m=RUNNING [36mlastStatus[0m=RUNNING [36mtaskDefinition[0m="wordpress:1"
+[36mINFO[0m[0037] Started container...                          [36mcontainer[0m=784aa82a-b92c-4854-971e-fb37967e1abd/mysql [36mdesiredStatus[0m=RUNNING [36mlastStatus[0m=RUNNING [36mtaskDefinition[0m="wordpress:1"
 ```

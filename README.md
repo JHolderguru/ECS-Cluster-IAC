@@ -1,5 +1,5 @@
 # Building AWS ECS Cluster using Code IAC
-#### Prereq
+## Prerequisite
 #### Install Amazon ECS CLI (this is different form the AWS CLI)
 #### 1. Open powershell as Admi and run the following commands
 ```bash
@@ -189,9 +189,63 @@ PS C:\> setx path "%path%;C:\Program Files\Amazon\ECSCLI"
 
 ```
 
-### 6. Verify that the CLI is working properly
+#### 6. Verify that the CLI is working properly
 
 
 ```
 ecs-cli --version
 ```
+
+## To Initiate the cluster we need the docker compose yaml file
+```
+version: '3'
+services:
+  wordpress:
+    image: wordpress
+    ports:
+      - "80:80"
+    links:
+      - mysql
+    logging:
+      driver: awslogs
+      options:
+        awslogs-group: jholderguru-ecscluster
+        awslogs-region: eu-west-1
+        awslogs-stream-prefix: wordpress
+  mysql:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+    logging:
+      driver: awslogs
+      options:
+        awslogs-group: jholderguru-ecscluster
+        awslogs-region: eu-west-1
+        awslogs-stream-prefix: mysql
+```
+#### and the ECS parameters yaml
+
+```
+version: 1
+task_definition:
+  services:
+    wordpress:
+      cpu_shares: 100
+      mem_limit: 262144000
+    mysql:
+      cpu_shares: 100
+      mem_limit: 262144000
+
+```
+#### while on powershell cd to the folder with the yaml files (wordpress folder).
+
+```
+ecs-cli configure --cluster jholderguru-ecscluster --region eu-west-1a --default-launch-type EC2 --config-name jholderguru-ecscluster
+
+```
+
+```
+ ecs-cli configure profile --access-key AKIAYXXXXXXXxxxxxxXxxxx2 --secret-key XXXXXXXXXXxxxxxXXXXXxxxxxx --profile-name jholderguru-ecscluster
+```
+#### expected output
+#### Saved ECS CLI profile configuration jholderguru-ecscluster.
